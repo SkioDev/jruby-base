@@ -12,7 +12,7 @@ RUN \
     git
 
 # Installing JRUBY
-ENV JRUBY_VERSION=9.0.5.0
+ENV JRUBY_VERSION=9.1.0.0
 RUN \
   wget https://s3.amazonaws.com/jruby.org/downloads/$JRUBY_VERSION/jruby-bin-$JRUBY_VERSION.tar.gz && \
   tar -xf jruby-bin-$JRUBY_VERSION.tar.gz && \
