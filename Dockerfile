@@ -22,3 +22,10 @@ RUN \
   /jruby/bin/jruby -S gem install bundler --no-document
 
 ENV PATH=/jruby/bin:$PATH
+
+RUN \
+  apk del \
+    wget \
+    git \
+    tar \
+    bash
