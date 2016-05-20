@@ -6,7 +6,7 @@ MAINTAINER Cameron Mullen <cam@skio.io>
 RUN \
   apk update && \
   apk upgrade && \
-  apk add \
+  apk add --no-cache \
     wget \
     git \
     tar \
