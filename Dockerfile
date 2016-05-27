@@ -1,16 +1,14 @@
-FROM frolvlad/alpine-oraclejdk8
+FROM ubuntu:xenial
 
 MAINTAINER Cameron Mullen <cam@skio.io>
 
 # Install base utilities
 RUN \
-  apk update && \
-  apk upgrade && \
-  apk add --no-cache \
-    wget \
-    git \
-    tar \
-    bash
+  apt-get update && \
+  apt-get upgrade && \
+  apt-get install -y \
+    openjdk-8-jdk-headless \
+    wget
 
 # Installing JRUBY
 ENV JRUBY_VERSION=9.1.0.0
@@ -19,13 +17,7 @@ RUN \
   tar -xf jruby-bin-$JRUBY_VERSION.tar.gz && \
   rm jruby-bin-$JRUBY_VERSION.tar.gz && \
   mv jruby-$JRUBY_VERSION /jruby && \
-  /jruby/bin/jruby -S gem install bundler --no-document
+  ln -s /jruby/bin/jruby /jruby/bin/ruby
+  /jruby/bin/jruby -S gem install bundler --no-document && \
 
-ENV PATH=/jruby/bin:$PATH
-
-RUN \
-  apk del \
-    wget \
-    git \
-    tar \
-    bash
+ENV PATH=$PATH:/jruby/bin
