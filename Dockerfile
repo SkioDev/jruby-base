@@ -8,7 +8,8 @@ RUN \
   apt-get upgrade && \
   apt-get install -y \
     openjdk-8-jdk-headless \
-    wget
+    wget && \
+  apt-get clean
 
 # Installing JRUBY
 ENV JRUBY_VERSION=9.1.0.0
@@ -17,7 +18,7 @@ RUN \
   tar -xf jruby-bin-$JRUBY_VERSION.tar.gz && \
   rm jruby-bin-$JRUBY_VERSION.tar.gz && \
   mv jruby-$JRUBY_VERSION /jruby && \
-  ln -s /jruby/bin/jruby /jruby/bin/ruby
-  /jruby/bin/jruby -S gem install bundler --no-document && \
+  ln -s /jruby/bin/jruby /jruby/bin/ruby && \
+  /jruby/bin/jruby -S gem install bundler --no-document
 
 ENV PATH=$PATH:/jruby/bin
