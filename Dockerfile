@@ -8,7 +8,7 @@ ENV JRUBY_VERSION=9.1.2.0 \
 # Install base utilities
 RUN \
   apt-get update && \
-  apt-get upgrade && \
+  apt-get upgrade -y && \
   apt-get install -y --no-install-recommends \
     openjdk-8-jdk-headless \
     wget \
